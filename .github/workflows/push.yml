@@ -7,7 +7,7 @@ jobs:
 
     services:
       db:
-        image: postgres:12
+        image: postgres:9.6
         ports: ["5432:5432"]
         env:
           POSTGRES_DB: myapp_test
@@ -46,7 +46,7 @@ jobs:
 
       - name: Create extension
         run: |
-          psql -v ON_ERROR_STOP=1 --host 127.0.0.1 --username postgres --password=example --dbname=myapp_test <<-EOSQL CREATE EXTENSION IF NOT EXISTS "uuid-ossp";EOSQL
+          PGPASSWORD=example psql -v ON_ERROR_STOP=1 --host 127.0.0.1 --username postgres --dbname=myapp_test <<-EOSQL CREATE EXTENSION IF NOT EXISTS "uuid-ossp";EOSQL
       - name: Run Tests
         env:
           DB_HOST: 127.0.0.1
