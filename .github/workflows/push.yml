@@ -46,7 +46,7 @@ jobs:
 
       - name: Create extension
         run: |
-          export PGPASSWORD=example; psql -v ON_ERROR_STOP=1 --host 127.0.0.1 --username postgres --dbname=myapp_test <<-EOSQL CREATE EXTENSION IF NOT EXISTS "uuid-ossp";EOSQL
+          export PGPASSWORD=example; psql -v ON_ERROR_STOP=1 --host 127.0.0.1 --username postgres --dbname=myapp_test -c 'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
       - name: Run Tests
         env:
           DB_HOST: 127.0.0.1
