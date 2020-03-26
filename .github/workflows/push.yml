@@ -1,5 +1,5 @@
-name: Continuous integration
-on: push
+name: Greet Everyone
+on: [push]
 
 jobs:
   test:
